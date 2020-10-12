@@ -1,0 +1,24 @@
+.head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 75px;
+  padding: 10px;
+  background-color: #f9fafc;
+}
+.el-button {
+  margin: 0 8px
+}
+.el-form-item {
+  width: 35%;
+  display: inline-block;
+  margin: 10px 30px;
+}
+.el-card {
+  margin: 10px 0px;
+}
+#pane-addEmployee .el-select {
+  width: 100%;
+}

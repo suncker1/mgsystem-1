@@ -121,12 +121,6 @@ export const constantRoutes = [
         component: () => import('@/views/shiftManagement/calendar'),
         name: 'Calendar',
         meta: { title: 'Calendar', icon: 'el-icon-date' }
-      },
-      {
-        path: 'approval',
-        component: () => import('@/views/shiftManagement/approval'),
-        name: 'Approval',
-        meta: { title: 'Approval', icon: 'el-icon-s-check' }
       }
     ]
   },

@@ -8,7 +8,7 @@
       :render-content="renderContent"
       :data="datedef"
       :prop="prop"
-      @pick="datePick"
+      lang="en"
     />
     <el-dialog title="Ask for leave" :visible.sync="dialogVisible">
       <el-form :model="form">
@@ -58,8 +58,10 @@ export default {
   data() {
     return {
       datedef: [
-        { 'date': '2020-10-14', 'content': 'kjfsdklj', 'cid': 'iooi' },
-        { 'date': '2020-10-20', 'content': 'dsfsdfr', 'cid': 'hjjdsf' }
+        { 'date': '2020-10-19', 'content': 'General(08:00-12:00)', 'cid': null },
+        { 'date': '2020-10-20', 'content': 'AEST(13:30-18:00)', 'cid': null },
+        { 'date': '2020-10-29', 'content': 'ANZ(13:30-18:00)', 'cid': null },
+        { 'date': '2020-11-09', 'content': 'General(08:00-12:00)', 'cid': null }
       ],
       prop: 'date',
       dialogVisible: false,

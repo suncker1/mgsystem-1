@@ -8,7 +8,7 @@
       :render-content="renderContent"
       :data="datedef"
       :prop="prop"
-      @pick="datePick"
+      lang="en"
     />
     <el-dialog title="Ask for leave" :visible.sync="dialogVisible">
       <el-form :model="form">
@@ -84,12 +84,10 @@ export default {
   },
   methods: {
     renderContent(h, parmas) {
-      console.log(h)
-      console.log(parmas)
       const loop = data => {
         return (
           data.defvalue.value ? (<div><div>{data.defvalue.text}</div>
-            <span >{data.defvalue.value.content}</span>
+            <span >啦啦啦(8:00-12:00)</span>
           </div>) : <div>{data.defvalue.text}</div>
         )
       }

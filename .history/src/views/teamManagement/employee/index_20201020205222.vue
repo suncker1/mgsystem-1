@@ -241,11 +241,12 @@ export default {
     }
   },
   mounted() {
-    axios.get('../../../../mock/form.js').then(res => {
-      // url即在mock.js中定义的
-      console.log(res.data) // 打印一下响应数据
-      this.tableData = res.data
-      this.total = res.data.length
+    axios.post('http://172.16.11.52:10086/global/user/login', {
+      mobile: '13030237810',
+      password: '123'
+    }).then(res => {
+      console.log('kjhfdksjhfsk')
+      console.log(res)
     })
   },
   methods: {

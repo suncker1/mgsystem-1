@@ -89,7 +89,7 @@ export default {
       const loop = data => {
         return (
           data.defvalue.value ? (<div><div>{data.defvalue.text}</div>
-            <span >{data.defvalue.value.content}</span>
+            <span >啦啦啦(8:00-12:00)</span>
           </div>) : <div>{data.defvalue.text}</div>
         )
       }

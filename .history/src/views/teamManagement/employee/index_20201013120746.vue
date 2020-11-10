@@ -241,7 +241,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('../../../../mock/form.js').then(res => {
+    axios.get('/mock/form').then(res => {
       // url即在mock.js中定义的
       console.log(res.data) // 打印一下响应数据
       this.tableData = res.data

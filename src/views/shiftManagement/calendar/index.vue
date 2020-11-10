@@ -8,7 +8,7 @@
       :render-content="renderContent"
       :data="datedef"
       :prop="prop"
-      @pick="datePick"
+      lang="en"
     />
     <el-dialog title="Ask for leave" :visible.sync="dialogVisible">
       <el-form :model="form">
@@ -37,7 +37,7 @@
           />
         </el-form-item>
         <el-form-item label="Reason" :label-width="formLabelWidth">
-          <el-input v-model="form.name" />
+          <el-input v-model="form.reason" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -58,34 +58,24 @@ export default {
   data() {
     return {
       datedef: [
-        { 'date': '2020-10-14', 'content': 'kjfsdklj', 'cid': 'iooi' },
-        { 'date': '2020-10-20', 'content': 'dsfsdfr', 'cid': 'hjjdsf' }
+        { 'date': '2020-10-19', 'content': 'General(08:00-12:00)', 'cid': null },
+        { 'date': '2020-10-20', 'content': 'AEST(13:30-18:00)', 'cid': null },
+        { 'date': '2020-10-29', 'content': 'ANZ(13:30-18:00)', 'cid': null },
+        { 'date': '2020-11-09', 'content': 'General(08:00-12:00)', 'cid': null }
       ],
       prop: 'date',
       dialogVisible: false,
       form: {
-        name: '',
-        shift: '',
-        region: '',
+        reason: '',
         valuedate: '',
         value1: [new Date(2020, 10, 10, 8, 30), new Date(2020, 10, 10, 12, 30)],
-        date1: '',
-        date2: '',
-        radio: 1,
-        radio1: 5,
-        checkList: ['Work'],
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+        radio: 1
       },
       formLabelWidth: '120px'
     }
   },
   methods: {
     renderContent(h, parmas) {
-      console.log(h)
-      console.log(parmas)
       const loop = data => {
         return (
           data.defvalue.value ? (<div><div>{data.defvalue.text}</div>
@@ -98,12 +88,6 @@ export default {
           {loop(parmas)}
         </div>
       )
-    },
-    handleEdit(index, row) {
-      console.log(index, row)
-    },
-    handleDelete(index, row) {
-      console.log(index, row)
     }
   }
 }

@@ -86,18 +86,6 @@ export default {
     renderContent(h, parmas) {
       console.log(h)
       console.log(parmas)
-      const loop = data => {
-        return (
-          data.defvalue.value ? (<div><div>{data.defvalue.text}</div>
-            <span >{data.defvalue.value.content}</span>
-          </div>) : <div>{data.defvalue.text}</div>
-        )
-      }
-      return (
-        <div style='min-height:60px;'>
-          {loop(parmas)}
-        </div>
-      )
     },
     handleEdit(index, row) {
       console.log(index, row)

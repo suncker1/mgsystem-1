@@ -58,8 +58,8 @@ export default {
   data() {
     return {
       datedef: [
-        { 'date': '2020-10-14', 'content': 'kjfsdklj', 'cid': 'iooi' },
-        { 'date': '2020-10-20', 'content': 'dsfsdfr', 'cid': 'hjjdsf' }
+        { 'date': '2019-05-01', 'content': '休息', 'cid': null },
+        { 'date': '2019-05-02', 'content': '休息', 'cid': null }
       ],
       prop: 'date',
       dialogVisible: false,
@@ -86,18 +86,6 @@ export default {
     renderContent(h, parmas) {
       console.log(h)
       console.log(parmas)
-      const loop = data => {
-        return (
-          data.defvalue.value ? (<div><div>{data.defvalue.text}</div>
-            <span >{data.defvalue.value.content}</span>
-          </div>) : <div>{data.defvalue.text}</div>
-        )
-      }
-      return (
-        <div style='min-height:60px;'>
-          {loop(parmas)}
-        </div>
-      )
     },
     handleEdit(index, row) {
       console.log(index, row)

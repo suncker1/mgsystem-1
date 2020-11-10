@@ -102,35 +102,6 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/shiftManagement',
-    component: Layout,
-    name: 'Shift Management',
-    meta: {
-      title: 'Shift Management',
-      icon: 'el-icon-s-claim'
-    },
-    children: [
-      {
-        path: 'shift',
-        component: () => import('@/views/shiftManagement/shift'),
-        name: 'Shift',
-        meta: { title: 'Shift', icon: 'el-icon-s-order' }
-      },
-      {
-        path: 'calendar',
-        component: () => import('@/views/shiftManagement/calendar'),
-        name: 'Calendar',
-        meta: { title: 'Calendar', icon: 'el-icon-date' }
-      },
-      {
-        path: 'approval',
-        component: () => import('@/views/shiftManagement/approval'),
-        name: 'Approval',
-        meta: { title: 'Approval', icon: 'el-icon-s-check' }
-      }
-    ]
-  },
-  {
     path: '/teamManagement',
     component: Layout,
     name: 'Team Management',
@@ -165,6 +136,7 @@ export const constantRoutes = [
       }
     ]
   },
+
   {
     path: 'external-link',
     component: Layout,

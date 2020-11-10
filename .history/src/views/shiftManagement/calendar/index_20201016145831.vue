@@ -8,7 +8,7 @@
       :render-content="renderContent"
       :data="datedef"
       :prop="prop"
-      @pick="datePick"
+      lang="en"
     />
     <el-dialog title="Ask for leave" :visible.sync="dialogVisible">
       <el-form :model="form">

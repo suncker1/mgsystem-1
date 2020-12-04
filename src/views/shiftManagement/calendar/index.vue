@@ -49,7 +49,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 import eleCalendar from 'ele-calendar'
 import 'ele-calendar/dist/vue-calendar.css'
 export default {
@@ -76,17 +76,14 @@ export default {
       formLabelWidth: '120px'
     }
   },
-  // mounted() {
-  //   axios.get('http://120.25.164.172:9124/system/shift/').then(res => {
-  //     this.datedef = res.data.data
-  //     this.tableData = this.tableData.map(row => {
-  //       return {
-  //         ...row,
-  //         editMode: false
-  //       }
-  //     })
-  //   })
-  // },
+  mounted() {
+    axios.get('http://120.25.164.172:9124/system/shift/').then(res => {
+      //获得轮班开始时间到结束时间中的每一天
+      console.log(this.formatEveryDay(res.data.data[0].start,res.data.data[0].end))
+      //将轮班信息拼接成content的形式
+      console.log(this.datecontent(res.data.data[0].shiftName,res.data.data[0].startTime,res.data.data[0].endTime))
+    })
+  },
   methods: {
     renderContent(h, parmas) {
       const loop = data => {
@@ -102,6 +99,33 @@ export default {
           {loop(parmas)}
         </div>
       )
+    },
+    formatEveryDay(start, end) {
+      let dateList = []; 
+      var startTime = this.getDate(start);
+      var endTime = this.getDate(end);
+
+      while ((endTime.getTime() - startTime.getTime()) >= 0) {
+          var year = startTime.getFullYear();
+          var month = startTime.getMonth() + 1 < 10 ? '0' + (startTime.getMonth() + 1) : startTime.getMonth() + 1;
+          var day = startTime.getDate().toString().length == 1 ? "0" + startTime.getDate() : startTime.getDate();
+          dateList.push(year + "-" + month + "-" + day); 
+          startTime.setDate(startTime.getDate() + 1);
+      }
+      return dateList;
+    },
+    getDate(datestr) {
+      var temp = datestr.split("-");
+      var date = new Date(temp[0], temp[1] - 1, temp[2]);
+      return date;
+    },
+    datecontent(shiftName,startTime,endTime){
+      let contentd = '';
+      var leftb = '(';
+      var rightb = ')';
+      var midb = '-';
+      contentd = shiftName+leftb+startTime+midb+endTime+rightb;
+      return contentd;
     }
   }
 }

@@ -90,18 +90,6 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/repository',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Repository',
-        component: () => import('@/views/repository/index'),
-        meta: { title: 'Repository', icon: 'el-icon-notebook-2' }
-      }
-    ]
-  },
-  {
     path: '/shiftManagement',
     component: Layout,
     name: 'Shift Management',
@@ -162,6 +150,18 @@ export const constantRoutes = [
         component: () => import('@/views/teamManagement/team'),
         name: 'Team',
         meta: { title: 'Team', icon: 'el-icon-s-data' }
+      }
+    ]
+  },
+  {
+    path: '/repository',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Repository',
+        component: () => import('@/views/repository/index'),
+        meta: { title: 'Repository', icon: 'el-icon-notebook-2' }
       }
     ]
   },

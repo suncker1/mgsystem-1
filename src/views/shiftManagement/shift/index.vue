@@ -19,7 +19,7 @@
         />
         <el-table-column
           label="StaffId"
-          width="150"
+          min-width="150"
           prop="staffId"
           sortable
         >
@@ -29,83 +29,49 @@
         </el-table-column>
         <el-table-column
           label="ShiftName"
-          width="150"
+          min-width="150"
         >
           <editable-cell v-model="row.shiftName" slot-scope="{row}" :show-input="row.editMode">
             <span slot="content">{{ row.shiftName }}</span>
           </editable-cell>
         </el-table-column>
         <el-table-column
-          label="Starting date"
-          width="150"
-          prop="start"
-          sortable
+          label="StartTime"
+          min-width="160"
+          prop="starttime"
         >
           <editable-cell
-            v-model="row.start"
+            v-model="row.starttime"
             slot-scope="{row}"
+            type="datetime"
             :show-input="row.editMode"
             editable-component="el-date-picker"
-            format="yyyy-MM-dd"
-            value-format="yyyy-MM-dd"
+            format="yyyy-MM-dd HH:mm:ss"
+            value-format="yyyy-MM-dd HH:mm:ss"
           >
-            <span slot="content">{{ row.start }}</span>
+            <span slot="content">{{ row.starttime }}</span>
           </editable-cell>
         </el-table-column>
         <el-table-column
-          label="Starting time"
-          width="150"
-          prop="startTime"
-          sortable
+          label="EndTime"
+          min-width="160"
+          prop="endtime"
         >
           <editable-cell
-            v-model="row.startTime"
+            v-model="row.endtime"
             slot-scope="{row}"
-            :show-input="row.editMode"
-            editable-component="el-time-picker"
-            format="HH:mm:ss"
-            value-format="HH:mm:ss"
-          >
-            <span slot="content">{{ row.startTime }}</span>
-          </editable-cell>
-        </el-table-column>
-        <el-table-column
-          label="End date"
-          width="150"
-          prop="end"
-          sortable
-        >
-          <editable-cell
-            v-model="row.end"
-            slot-scope="{row}"
+            type="datetime"
             :show-input="row.editMode"
             editable-component="el-date-picker"
-            format="yyyy-MM-dd"
-            value-format="yyyy-MM-dd"
+            format="yyyy-MM-dd HH:mm:ss"
+            value-format="yyyy-MM-dd HH:mm:ss"
           >
-            <span slot="content">{{ row.end }}</span>
-          </editable-cell>
-        </el-table-column>
-        <el-table-column
-          label="End time"
-          width="150"
-          prop="endTime"
-          sortable
-        >
-          <editable-cell
-            v-model="row.endTime"
-            slot-scope="{row}"
-            :show-input="row.editMode"
-            editable-component="el-time-picker"
-            format="HH:mm:ss"
-            value-format="HH:mm:ss"
-          >
-            <span slot="content">{{ row.endTime }}</span>
+            <span slot="content">{{ row.endtime }}</span>
           </editable-cell>
         </el-table-column>
         <el-table-column
           label="ShiftType"
-          width="150"
+          min-width="150"
         >
           <editable-cell
             v-model="row.shiftType"
@@ -131,7 +97,7 @@
         </el-table-column>
         <el-table-column
           label="ShiftTask"
-          width="150"
+          min-width="150"
         >
           <editable-cell
             v-model="row.shiftTask"
@@ -158,7 +124,7 @@
         </el-table-column>
         <el-table-column
           label="ShiftActivity"
-          width="150"
+          min-width="150"
         >
           <editable-cell
             v-model="row.shiftActivity"
@@ -189,7 +155,7 @@
           min-width="80"
         />
 
-        <el-table-column label="Operations" width="120">
+        <el-table-column label="Operations" min-width="120">
           <template slot-scope="{row, index}">
             <el-button
               v-if="row.editMode == false"
@@ -230,22 +196,13 @@
         <el-form-item label="Shift name" :label-width="formLabelWidth">
           <el-input v-model="form.shift" />
         </el-form-item>
-        <el-form-item label="Date" :label-width="formLabelWidth">
-          <el-date-picker
-            v-model="form.valuedate"
-            type="daterange"
-            range-separator="To"
-            start-placeholder="Start date"
-            end-placeholder="End date"
-          />
-        </el-form-item>
         <el-form-item label="Time" :label-width="formLabelWidth">
-          <el-time-picker
-            v-model="form.value1"
-            is-range
-            range-separator="To"
-            start-placeholder="Start time"
-            end-placeholder="End time"
+          <el-date-picker
+            v-model="form.datetime1"
+            type="datetimerange"
+            start-placeholder="Start Date"
+            end-placeholder="End Date"
+            :default-time="['12:00:00', '08:00:00']"
           />
         </el-form-item>
         <el-form-item label="Type" :label-width="formLabelWidth">
@@ -294,28 +251,75 @@ export default {
       showshiftid: false,
       dialogFormVisible: false,
       form: {
+        datetime1: '',
         engineer: '',
         shift: '',
-        valuedate: '',
-        value1: [new Date(2020, 10, 10, 8, 30), new Date(2020, 10, 10, 12, 30)],
         type: 'Morning',
         task: 'Work',
         activities: ['Work']
       },
       formLabelWidth: '120px',
-      tableData: []
+      tableData: [
+        {
+          starttime: '2021-01-03 12:00:00',
+          endtime: '2021-01-12 16:00:00',
+          shiftId: '001',
+          staffId: '1001',
+          shiftName: '123',
+          shiftType: 'Night',
+          shiftTask: 'Work',
+          shiftActivity: ['Lunch'],
+          status: ''
+        }, {
+          starttime: '2021-01-03 12:00:00',
+          endtime: '2021-01-12 16:00:00',
+          shiftId: '001',
+          staffId: '1001',
+          shiftName: '123',
+          shiftType: 'Night',
+          shiftTask: 'Work',
+          shiftActivity: ['Lunch'],
+          status: ''
+        }, {
+          starttime: '2021-01-03 12:00:00',
+          endtime: '2021-01-12 16:00:00',
+          shiftId: '001',
+          staffId: '1001',
+          shiftName: '123',
+          shiftType: 'Night',
+          shiftTask: 'Work',
+          shiftActivity: ['Lunch'],
+          status: ''
+        }, {
+          starttime: '2021-01-03 12:00:00',
+          endtime: '2021-01-12 16:00:00',
+          shiftId: '001',
+          staffId: '1001',
+          shiftName: '123',
+          shiftType: 'Night',
+          shiftTask: 'Work',
+          shiftActivity: ['Lunch'],
+          status: ''
+        }
+      ]
     }
   },
   mounted() {
-    axios.get('http://120.25.164.172:9124/system/shift/').then(res => {
-      this.tableData = res.data.data
-      this.tableData = this.tableData.map(row => {
-        return {
-          ...row,
-          editMode: false
-        }
-      })
+    this.tableData = this.tableData.map(row => {
+      return {
+        ...row,
+        editMode: false
+      }
     })
+    // axios.get('http://120.25.164.172:9124/system/shift/').then(res => {
+    //   this.tableData = res.data.data
+    //   this.tableData = this.tableData.map(row => {
+    //     return {
+    //       ...row,
+    //       editMode: false
+    //     }
+    //   })
+    // })
   },
   updated() {
     // 对Table进行重新布局
@@ -352,6 +356,11 @@ export default {
       }
       var currentdate = year + seperator1 + month + seperator1 + strDate
       return currentdate
+    },
+    changeNowFormatDatetime(date) {
+      var d = new Date(date)
+      var datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + this.zeroFill(d.getHours()) + ':' + this.zeroFill(d.getMinutes()) + ':' + this.zeroFill(d.getSeconds())
+      return datetime
     },
     changeNowFormatDate(date) {
       var seperator1 = '-'
@@ -416,20 +425,21 @@ export default {
       row.editMode = false
     },
     submitShift() {
-      const data = new FormData()
-      data.append('activities', this.form.activities)
-      data.append('end', this.changeNowFormatDate(this.form.valuedate[1]))
-      data.append('endTime', this.getNowFormattime(this.form.value1[1]))
-      data.append('engineer', this.form.engineer)
-      data.append('shift', this.form.shift)
-      data.append('start', this.changeNowFormatDate(this.form.valuedate[0]))
-      data.append('startTime', this.getNowFormattime(this.form.value1[0]))
-      data.append('task', this.form.task)
-      data.append('type', this.form.type)
-      axios.post('http://120.25.164.172:9124/system/shift/', data).then(res => {
-        console.log(res)
-      })
-      this.dialogFormVisible = false
+      console.log(this.changeNowFormatDatetime(this.form.datetime1[0]))
+      // const data = new FormData()
+      // data.append('activities', this.form.activities)
+      // data.append('end', this.changeNowFormatDate(this.form.valuedate[1]))
+      // data.append('endTime', this.getNowFormattime(this.form.value1[1]))
+      // data.append('engineer', this.form.engineer)
+      // data.append('shift', this.form.shift)
+      // data.append('start', this.changeNowFormatDate(this.form.valuedate[0]))
+      // data.append('startTime', this.getNowFormattime(this.form.value1[0]))
+      // data.append('task', this.form.task)
+      // data.append('type', this.form.type)
+      // axios.post('http://120.25.164.172:9124/system/shift/', data).then(res => {
+      //   console.log(res)
+      // })
+      // this.dialogFormVisible = false
     },
     cancelEdit(row, index) {
       row.editMode = false

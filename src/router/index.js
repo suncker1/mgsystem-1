@@ -90,6 +90,23 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/laborManagement',
+    component: Layout,
+    name: 'Labor Management',
+    meta: {
+      title: 'Labor Management',
+      icon: 'el-icon-s-management'
+    },
+    children: [
+      {
+        path: 'workflowTemplate',
+        component: () => import('@/views/laborManagement/workflowTemplate'),
+        name: 'Workflow Template',
+        meta: { title: 'Workflow Template', icon: 'el-icon-document-copy' }
+      }
+    ]
+  },
+  {
     path: '/shiftManagement',
     component: Layout,
     name: 'Shift Management',
